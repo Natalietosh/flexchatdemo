@@ -42,7 +42,7 @@ var initESW = function(gslbBaseURL) {
                         var visitorid = e.data.data.chasitorData.chatKey.replace(/-/g, '');
                         console.log('Chat Start - visitorid=' + visitorid);
                         visitor = new GLANCE.Presence.Visitor({
-                            groupid: 21355,
+                            groupid: 21515,
                             visitorid: visitorid
                         });
                         visitor.connect();
@@ -55,7 +55,7 @@ var initESW = function(gslbBaseURL) {
                             e.data.data.chasitorSessionData.chatKey.replace(/-/g, '');
                         console.log('Chat Restart - visitorid=' + visitorid);
                         visitor = new GLANCE.Presence.Visitor({
-                            groupid: 21355,
+                            groupid: 21515,
                             visitorid: visitorid
                         });
                         visitor.connect();
