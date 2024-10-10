@@ -39,3 +39,20 @@ async function endCall() {
     peerConnection.close();
     localStream.getTracks().forEach(track => track.stop());
 }
+
+const socket = io('http://localhost:3000');
+
+socket.on('offer', async (offer) => {
+    await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
+    const answer = await peerConnection.createAnswer();
+    await peerConnection.setLocalDescription(answer);
+    socket.emit('answer', answer);
+});
+
+socket.on('answer', answer => {
+    peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
+});
+
+socket.on('ice-candidate', candidate => {
+    peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
+});
